@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="CekAman — cek link & pesan crypto sebelum kamu klik. AI di perangkat dulu, cloud hanya kalau meragukan."
+    />
+    <title>CekAman — Cek Penipuan Crypto</title>
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header class="hero">
+        <h1>🛡️ CekAman</h1>
+        <p class="tagline">
+          Cek link &amp; pesan crypto sebelum kamu klik. AI di perangkat dulu —
+          cloud hanya kalau meragukan.
+        </p>
+        <p id="nano-status" class="status-pill">Memeriksa model di perangkat…</p>
+        <p id="setup-warning" class="setup-warning" hidden>
+          Firebase belum dikonfigurasi. Salin <code>.env.example</code> ke
+          <code>.env</code> dan isi dari Firebase console — lihat README.
+        </p>
+      </header>
+
+      <section class="card">
+        <label for="input-text">Tempel link atau pesan yang mencurigakan</label>
+        <textarea
+          id="input-text"
+          rows="5"
+          maxlength="4000"
+          placeholder="Contoh: Selamat! Kamu menang 500 USDT. Klaim hadiahmu di binance-airdrop-claim.com sebelum 1 jam…"
+        ></textarea>
+        <p class="hint">
+          Teks hanya dianalisis di perangkatmu dulu. Kalau hasilnya meragukan,
+          teks dikirim ke cloud untuk analisis mendalam.
+        </p>
+
+        <div class="examples">
+          <span>Coba contoh:</span>
+          <button type="button" class="chip" data-example="scam">
+            🎁 “Menang airdrop”
+          </button>
+          <button type="button" class="chip" data-example="phishing">
+            🔗 Link mirip Binance
+          </button>
+          <button type="button" class="chip" data-example="legit">
+            ✅ Pengumuman resmi
+          </button>
+        </div>
+
+        <fieldset class="mode-picker">
+          <legend>Mode analisis</legend>
+          <label>
+            <input type="radio" name="mode" value="auto" checked />
+            Otomatis <small>(disarankan — perangkat dulu, cloud kalau ragu)</small>
+          </label>
+          <label>
+            <input type="radio" name="mode" value="device" />
+            Hanya di perangkat <small>(privat, tanpa cloud)</small>
+          </label>
+          <label>
+            <input type="radio" name="mode" value="cloud" />
+            Hanya cloud <small>(analisis mendalam)</small>
+          </label>
+        </fieldset>
+
+        <button id="check-btn" type="button" class="primary">
+          Periksa
+        </button>
+        <p id="progress" class="progress" hidden></p>
+      </section>
+
+      <section id="result" class="card result" hidden>
+        <div class="verdict-row">
+          <span id="verdict-badge" class="verdict-badge">—</span>
+          <span id="source-badge" class="source-badge">—</span>
+        </div>
+        <div class="score-wrap">
+          <div class="score-label">
+            <span>Skor risiko</span><span id="score-num">—</span>
+          </div>
+          <div class="score-bar"><div id="score-fill"></div></div>
+          <p class="score-note">0 = aman, 100 = sangat berbahaya</p>
+        </div>
+        <h2>Kenapa?</h2>
+        <ul id="reasons"></ul>
+        <h2>Sinyal yang ditemukan</h2>
+        <ul id="signals"></ul>
+        <p id="stage-info" class="stage-info"></p>
+        <div class="actions">
+          <button id="copy-btn" type="button">Salin hasil</button>
+          <button id="deep-btn" type="button" hidden>
+            Analisis mendalam (cloud)
+          </button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Riwayat pemeriksaan</h2>
+        <p class="hint">Tersimpan hanya di perangkat ini (localStorage).</p>
+        <ul id="history"></ul>
+      </section>
+
+      <footer>
+        <p>
+          CekAman memberi <strong>penilaian</strong>, bukan kepastian. Jangan
+          pernah membagikan seed phrase atau private key ke siapa pun. Selalu
+          verifikasi lewat situs / aplikasi resmi.
+        </p>
+        <p>
+          Dibangun dengan Firebase AI Logic (hybrid inference: Gemini Nano di
+          perangkat + Gemini di cloud) untuk #BuildHybridAI 2026.
+        </p>
+      </footer>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
