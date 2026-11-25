@@ -36,7 +36,7 @@ alone — they feed the AI prompts as context and are shown in the UI.
 |---|---|---|
 | `firebase` (JS SDK) | **13.4.0** (exact) | Hybrid on-device needs SDK v12.5.0+ |
 | `vite` | ^8.0.0 (8.3.8 installed) | Dev server + build |
-| Cloud model | `gemini-3.8-flash` (stable) | Set via Remote Config `cloud_model`; verify against the models page at build time — model names move fast |
+| Cloud model | `gemini-3.5-flash-lite` (stable) | Set via Remote Config `cloud_model`; verify against the models page at build time — model names move fast |
 | On-device model | Gemini Nano 4 (Chrome Prompt API) | Chrome Desktop 139+, flag + download (below) |
 | Backend | Gemini Developer API (`GoogleAIBackend`) | Free tier, **no billing**. Vertex AI backend is deliberately NOT used (needs billing) |
 | App Check | Enforced by AI Logic setup | Debug provider locally; reCAPTCHA Enterprise in production |
